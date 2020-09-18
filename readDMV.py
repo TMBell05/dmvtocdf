@@ -165,7 +165,7 @@ def readDMV(filename):
         # Determine the record size, variable offset and data offset based on file type.
 # ....RNC ######################################################################################################
         if ((ext == 'RNC') | (ext == 'rnc')):
-            channel = filename.split('.')[0][-1]
+            channel = filename.split('.')[-2][-1]
             if channel == '1':
                 nvars = 79
             else:
@@ -178,8 +178,8 @@ def readDMV(filename):
             dataOffset = [(nvars * 4) + (nvars + nvarsExtra1) + (nvars * 4) + (nvars + nvarsExtra2)]
 # ....RLC ######################################################################################################
         elif ((ext == 'RLC') | (ext == 'rlc')):
-            channel = filename.split('.')[0][-1]
-            typ = filename.split('.')[0][-2:-1]
+            channel = filename.split('.')[-2][-1]
+            typ = filename.split('.')[-2][-2:-1]
             if (typ == 'B'):
                 scanDirection = 'Backward'
             elif(typ == 'F'):
@@ -213,8 +213,8 @@ def readDMV(filename):
             nvars = 71
             nvarsExtra1 = 0
             nvarsExtra2 = 0
-            channel = filename.split('.')[0][-1]
-            typ = filename.split('.')[0][-2:-1]
+            channel = filename.split('.')[-2][-1]
+            typ = filename.split('.')[-2][-2:-1]
             if (typ == 'B'):
                 scanDirection = 'Backward'
             else:
@@ -243,8 +243,8 @@ def readDMV(filename):
             nvars = 79
             nvarsExtra1 = 0
             nvarsExtra2 = 0
-            channel = filename.split('.')[0][-1]
-            typ = filename.split('.')[0][-2:-1]
+            channel = filename.split('.')[-2][-1]
+            typ = filename.split('.')[-2][-2:-1]
             if (typ == 'B'):
                 scanDirection = 'Backward'
             else:
