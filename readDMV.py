@@ -271,7 +271,7 @@ def readDMV(filename):
 # ....SUM ######################################################################################################
         elif ((ext == 'SUM') | (ext == 'sum')):
             nvars = 144
-            recordSize = 9776
+            recordSize = 9732
             variableOffset = 1479
             dataOffset = [variableOffset + nvars]
             for v in dependentVariableRecords:
@@ -396,6 +396,7 @@ def readDMV(filename):
     # date
     ds['date'] = np.int32(filename.split('/')[-1][0:6])
     # time_offset
+    print(Time)
     ds['time_offset'] = np.array(
         [(pd.Timedelta(time, unit='h') - pd.Timedelta(Time[0], unit='h')).total_seconds() for time in Time])
     ds['time_offset'].attrs['longname'] = 'Time offset from base_time'
