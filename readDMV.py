@@ -192,11 +192,12 @@ def readDMV(filename):
                     nvars = 79
                 else:
                     nvars = 71
-                nvarsExtra = 14
+                nvarsExtra1 = 14
+                nvarsExtra2 = 0
 
-                recordSize = (nvars * 4)*4 + (nvars + nvarsExtra)*4 + numberOfDependentVariableBytes
+                recordSize = (nvars * 4)*4 + (nvars + nvarsExtra1)*4 + numberOfDependentVariableBytes
                 variableOffset = nvars * 4
-                dataOffset = [(nvars * 5) + nvarsExtra]
+                dataOffset = [(nvars * 5) + nvarsExtra1]
             else:                                                             # Both (C1 or C2)
                 if channel == '1':
                     nvars = 79
@@ -271,6 +272,8 @@ def readDMV(filename):
 # ....SUM ######################################################################################################
         elif ((ext == 'SUM') | (ext == 'sum')):
             nvars = 144
+            nvarsExtra1 = 0
+            nvarsExtra2 = 0
             recordSize = 9732
             variableOffset = 1479
             dataOffset = [variableOffset + nvars]
@@ -289,7 +292,7 @@ def readDMV(filename):
                 'dataOffset': dataOffset,
                 'numberOfRecords': numberOfRecords,
                 'numberOfValues': numberOfValues,
-                'numberOfVariables': nvars
+                'numberOfVariables': nvars+nvarsExtra1+nvarsExtra2
                 }
 
 # Todo: Create a float64 variable in the xarray dataset (and for the netcdf file).
